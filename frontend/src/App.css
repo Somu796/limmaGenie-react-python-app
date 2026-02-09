@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* In v4, you don't need @layer components for simple aliases */
+
+@layer components {
+
+  /* This is your "Physical" feel */
+  .btn-tactile {
+    @apply transition-all duration-100 active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap font-medium flex items-center justify-center;
+  }
+
+  /* This is your "Ghost" look */
+  .btn-ghost {
+    @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-lg;
+  }
+
+  /* This is your "Primary" look */
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md shadow-sm font-semibold;
+  }
+}
