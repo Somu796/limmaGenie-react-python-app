@@ -1,68 +1,10 @@
 import React, { useState } from "react";
 import MessageInput from "./MessgeInput";
+import ReactMarkdown from 'react-markdown';
+import rehypeHighlight from 'rehype-highlight';
+import 'highlight.js/styles/a11y-light.css';
 
-//  I think after api call I am dividing it into two parts text and code in blocks but I guess just rendering md as chat should work
-// function splitCodeFromText(text) {
-//     const regex = /```(\w+)?\s*([\s\S]+?)```|([\s\S]+?(?=```|$))/g;
-//     const parts = [];
-//     let lastIndex = 0;
 
-//     while (true) {
-//         const match = regex.exec(text);
-//         if (!match) break;
-
-//         if (match[2]) {
-//             if (match.index > lastIndex) {
-//                 parts.push({
-//                     isCode: false,
-//                     text: text.substring(lastIndex, match.index),
-//                 });
-//             }
-//             parts.push({
-//                 isCode: true,
-//                 text: match[2],
-//                 language: match[1] || undefined,
-//             });
-//             lastIndex = regex.lastIndex;
-//         } else if (match[3]) {
-//             parts.push({ isCode: false, text: match[3] });
-//             lastIndex = regex.lastIndex;
-//         }
-//     }
-
-//     return parts;
-// };
-
-// /**
-//  * CodeBlock Component
-//  * Displays a code block with a copy button.
-//  */
-// const CodeBlock = ({ text, language }) => {
-//     const [copied, setCopied] = useState(false);
-
-//     const handleCopy = () => {
-//         navigator.clipboard.writeText(text);
-//         setCopied(true);
-//         setTimeout(() => setCopied(false), 2000);
-//     };
-
-//     return (
-//         <div className="relative my-2 bg-gray-800 text-white font-mono rounded-lg overflow-hidden">
-//             <div className="flex justify-between items-center p-2 bg-gray-700">
-//                 {language && <span className="text-xs text-gray-300">{language}</span>}
-//                 <button
-//                     onClick={handleCopy}
-//                     className="text-xs px-2 py-1 bg-gray-600 hover:bg-gray-500 rounded text-white"
-//                 >
-//                     {copied ? "Copied!" : "Copy"}
-//                 </button>
-//             </div>
-//             <pre className="p-3 overflow-x-auto">
-//                 <code>{text}</code>
-//             </pre>
-//         </div>
-//     );
-// };
 
 import { useRef, useEffect } from "react";
 
@@ -101,9 +43,6 @@ function ChatPage(props) {
             {/* Chat Messages */}
             <div className="space-y-6 overflow-y-auto max-h-[60vh] p-4 pb-20">
                 {
-                    console.log(props.messages)
-                }
-                {
                     props.messages.map((msg) => (
                         <div
                             key={msg.id}
@@ -116,7 +55,13 @@ function ChatPage(props) {
                                     : "bg-gray-100 text-gray-800 rounded-tl-none" // AI bubble (usually light)
                                     }`}
                             >
-                                {msg.content}
+                                <div className={`prose prose-sm max-w-none 
+        prose-pre:!bg-transparent prose-pre:p-0 prose-pre:my-4
+        ${msg.role === "user" ? "prose-invert" : "text-gray-800"}`}>
+                                    <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+                                        {msg.content}
+                                    </ReactMarkdown>
+                                </div>
                             </div>
                             {/* <ChatMessage message={msg.id.content} /> */}
 
@@ -279,3 +224,67 @@ export default ChatPage;
 // };
 
 // export default ChatInterfacePage;
+
+
+//  I think after api call I am dividing it into two parts text and code in blocks but I guess just rendering md as chat should work
+// function splitCodeFromText(text) {
+//     const regex = /```(\w+)?\s*([\s\S]+?)```|([\s\S]+?(?=```|$))/g;
+//     const parts = [];
+//     let lastIndex = 0;
+
+//     while (true) {
+//         const match = regex.exec(text);
+//         if (!match) break;
+
+//         if (match[2]) {
+//             if (match.index > lastIndex) {
+//                 parts.push({
+//                     isCode: false,
+//                     text: text.substring(lastIndex, match.index),
+//                 });
+//             }
+//             parts.push({
+//                 isCode: true,
+//                 text: match[2],
+//                 language: match[1] || undefined,
+//             });
+//             lastIndex = regex.lastIndex;
+//         } else if (match[3]) {
+//             parts.push({ isCode: false, text: match[3] });
+//             lastIndex = regex.lastIndex;
+//         }
+//     }
+
+//     return parts;
+// };
+
+// /**
+//  * CodeBlock Component
+//  * Displays a code block with a copy button.
+//  */
+// const CodeBlock = ({ text, language }) => {
+//     const [copied, setCopied] = useState(false);
+
+//     const handleCopy = () => {
+//         navigator.clipboard.writeText(text);
+//         setCopied(true);
+//         setTimeout(() => setCopied(false), 2000);
+//     };
+
+//     return (
+//         <div className="relative my-2 bg-gray-800 text-white font-mono rounded-lg overflow-hidden">
+//             <div className="flex justify-between items-center p-2 bg-gray-700">
+//                 {language && <span className="text-xs text-gray-300">{language}</span>}
+//                 <button
+//                     onClick={handleCopy}
+//                     className="text-xs px-2 py-1 bg-gray-600 hover:bg-gray-500 rounded text-white"
+//                 >
+//                     {copied ? "Copied!" : "Copy"}
+//                 </button>
+//             </div>
+//             <pre className="p-3 overflow-x-auto">
+//                 <code>{text}</code>
+//             </pre>
+//         </div>
+//     );
+// };

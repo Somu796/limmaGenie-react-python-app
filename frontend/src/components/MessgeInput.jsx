@@ -53,6 +53,7 @@ function MessageInput({ handleMesages }) {
                 id="messageInput"
                 name="messageInput"
                 placeholder="Message limmaGenie"
+
                 className="w-full px-6 py-4 pr-12 rounded-lg border-none focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 placeholder-gray-400 font-medium"
             />
             <button
