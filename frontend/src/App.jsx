@@ -59,8 +59,13 @@ function App() {
     }])
 
     // Performs API call
-    const response = await sendMessageToOpenAI(userInput);
+    // const response = await sendMessageToOpenAI(userInput);
+    const LIMMAGENIE_API_URL = import.meta.env.VITE_LIMMAGENIE_API_URL;
+    const response_json = await fetch(`${LIMMAGENIE_API_URL}${userInput}`);
+    const data = await response_json.json();
+    const response = data.message;
     console.log("API Running")
+    console.log(response)
     // const response = "All good response from AI works!"
 
     // 3. Add Agent Reply to the messages
