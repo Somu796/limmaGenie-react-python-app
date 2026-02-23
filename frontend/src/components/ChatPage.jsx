@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import { useRef, useEffect } from "react";
 import MessageInput from "./MessgeInput";
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/a11y-light.css';
+import { Loader, TypedMarkdown, CodeBlock } from "./utils";
 
-
-
-import { useRef, useEffect } from "react";
 
 function ChatPage(props) {
     // const parts = splitCodeFromText(message.content);
     const messagesEndRef = useRef(null);
 
-    // Scroll to bottom whenever messages change
-    useEffect(() => {
+    // // Scroll to bottom whenever messages change
+    // useEffect(() => {
+    //     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // }, [props.messages, props.isLoading]);
+
+    // This function uses the ref you already have
+    const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [props.messages]);
+    };
+
+    // Keep your existing useEffect for when new messages arrive
+    useEffect(() => {
+        scrollToBottom();
+    }, [props.messages, props.isLoading]);
 
     return (
         // <main
@@ -41,11 +49,11 @@ function ChatPage(props) {
             </div>
 
             {/* Chat Messages */}
-            <div className="space-y-6 overflow-y-auto max-h-[60vh] p-4 pb-20">
+            <div className="space-y-6 overflow-y-auto max-h-[60vh] p-4 pb-32">
                 {
-                    props.messages.map((msg) => (
+                    props.messages.map((msg, index) => (
                         <div
-                            key={msg.id}
+                            key={msg.id || index} //index just used as fallback
                             className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"
                                 }`}
                         >
@@ -55,25 +63,42 @@ function ChatPage(props) {
                                     : "bg-gray-100 text-gray-800 rounded-tl-none" // AI bubble (usually light)
                                     }`}
                             >
-                                <div className={`prose prose-sm max-w-none 
-        prose-pre:!bg-transparent prose-pre:p-0 prose-pre:my-4
-        ${msg.role === "user" ? "prose-invert" : "text-gray-800"}`}>
-                                    <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-                                        {msg.content}
-                                    </ReactMarkdown>
+                                <div className={"prose prose-slate max-w-none"
+                                }>
+                                    {msg.role === "user" ? (
+                                        /* Render user messages as plain text to avoid Markdown symbol issues */
+                                        <p className="whitespace-pre-wrap m-0">{msg.content}</p>
+                                    ) : (
+                                        /* Render AI responses as Markdown */
+                                        // <ReactMarkdown
+                                        //     rehypePlugins={[rehypeHighlight]}
+                                        //     components={{
+                                        //         pre: CodeBlock // This tells Markdown to use our custom CodeBlock for all <pre> tags
+                                        //     }}>
+                                        //     {msg.content}
+                                        // </ReactMarkdown>
+                                        <TypedMarkdown
+                                            content={msg.content}
+                                            isLast={index === props.messages.length - 1 && msg.role === "assistant"}
+                                            isLoading={props.isLoading}
+                                            CodeBlockComponent={CodeBlock}
+                                            onType={scrollToBottom}
+                                        />
+                                    )}
                                 </div>
                             </div>
                             {/* <ChatMessage message={msg.id.content} /> */}
 
                         </div>))
                 }
+                <Loader isLoading={props.isLoading} />
                 <div ref={messagesEndRef} />
             </div>
 
             {/* Input Area */}
             <div className="fixed bottom-0 left-0 right-0 p-4 bg-white shadow-lg z-10">
                 <div className="container mx-auto max-w-4xl">
-                    <MessageInput handleMesages={props.handleMesages} />
+                    <MessageInput handleMesages={props.handleMesages} isLoading={props.isLoading} />
                 </div>
             </div>
         </main>

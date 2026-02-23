@@ -11,7 +11,7 @@ start_apps() {
     echo "📡 Starting FastAPI Backend..."
     cd backend || exit
     # 'uv run' works great here
-    uv run uvicorn main:app --reload > ../backend.log 2>&1 &
+    uv run uvicorn app:app --reload > ../backend.log 2>&1 &
     echo $! > "../$BACK_PID_FILE"
     cd ..
 

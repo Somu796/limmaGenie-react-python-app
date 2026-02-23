@@ -44,11 +44,16 @@ import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 // export default MessageInput;
 
 
-function MessageInput({ handleMesages }) {
+function MessageInput({ handleMesages, isLoading }) {
 
 
     return (
-        <form className="relative shadow-md" action={handleMesages} >
+        <form className="relative shadow-md" onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            handleMesages(formData);
+            e.target.reset(); // clears the input immediately
+        }} >
             <input
                 id="messageInput"
                 name="messageInput"

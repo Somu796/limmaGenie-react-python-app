@@ -19,3 +19,104 @@
     @apply bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md shadow-sm font-semibold;
   }
 }
+
+
+/* 1. Refined Code Block Container */
+.prose pre {
+  background-color: #dee1e4 !important;
+  /*#0d1117*/
+  /* GitHub Dark style background */
+  border: 1.5px solid #30363d !important;
+  /* Subtler, thinner dark-grey border */
+  border-radius: 10px !important;
+  padding: 1.25rem !important;
+  margin: 1.5rem 0 !important;
+  overflow-x: auto !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  /* Optional: soft shadow */
+}
+
+/* 2. Fix the Text Color inside the Code Block */
+/* This ensures the R code is bright and readable */
+.prose pre code {
+  color: #3f3f40 !important;
+  /* Bright off-white/grey for high contrast */
+  font-family: 'Fira Code', 'Cascadia Code', monospace !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+  background-color: transparent !important;
+  /* Remove any nested background */
+  padding: 0 !important;
+}
+
+/* 3. Fix Inline Code (like `paste` or `lmFit` in text) */
+.prose :not(pre)>code {
+  background-color: #f1f5f9 !important;
+  /* Light blue-grey */
+  color: #346442 !important;
+  /* Clear Blue */
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+}
+
+/* 4. Ensure Lists and Headers remain visible */
+.prose ol {
+  list-style-type: decimal !important;
+  padding-left: 2rem !important;
+}
+
+.prose h3 {
+  color: #1e293b !important;
+  /* Slate 800 */
+  font-weight: 800 !important;
+}
+
+/* 1. Make the pre container a relative anchor for the label */
+.prose pre {
+  position: relative !important;
+  padding-top: 2.5rem !important;
+  /* Make room for the label */
+}
+
+/* 2. Create the Language Label */
+.prose pre::before {
+  content: "Code";
+  /* Default text */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* background: #2d333b; */
+  /* Slightly lighter than the code background */
+  /* color: rgb(41, 41, 41); */
+  font-size: 0.75rem;
+  padding: 0.4rem 1rem;
+  font-family: sans-serif;
+  /* border-bottom: 1px solid #30363d; */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  /* text-transform: uppercase; */
+  font-weight: 600;
+}
+
+/* 3. Dynamic Labels based on class names added by rehype-highlight */
+.prose pre:has(code.language-r)::before {
+  content: "R";
+}
+
+.prose pre:has(code.language-python)::before {
+  content: "Python";
+}
+
+.prose pre:has(code.language-javascript)::before {
+  content: "Javascript";
+}
+
+.prose pre:has(code.language-js)::before {
+  content: "Javascript";
+}
+
+.prose pre:has(code.language-css)::before {
+  content: "CSS";
+}
