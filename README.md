@@ -40,13 +40,13 @@ Built with **LLM-powered intelligence** and deployed as a lightweight app, it's 
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/Somu796/limmaGenie-react-python-app.git
-   cd limmaGenie-react-python-app
+   > git clone https://github.com/Somu796/limmaGenie-react-python-app.git
+   > cd limmaGenie-react-python-app
    ```
 
 2. **Run the App:**
    ```bash
-   ./dev.sh #Should be docker compose
+   > ./dev.sh #Should be docker compose
    ```
 
 ## 🧠 What Tech Stack?
