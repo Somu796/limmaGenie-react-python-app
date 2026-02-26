@@ -1,9 +1,7 @@
 import { useRef, useEffect } from "react";
 import MessageInput from "./MessgeInput";
-import ReactMarkdown from 'react-markdown';
-import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/a11y-light.css';
-import { Loader, TypedMarkdown, CodeBlock } from "./utils";
+import { Loader, TypedMarkdown, CodeBlock } from "./utils.jsx";
 
 
 function ChatPage(props) {

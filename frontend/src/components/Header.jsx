@@ -4,8 +4,11 @@ import {
     faInfoCircle,
     //   faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
+import { AboutCard } from "./utils.jsx"
+import { useState } from "react";
 
 function Header({ clearChat }) {
+    const [showAbout, setShowAbout] = useState(false);
     return (
         <header className="h-16 flex items-center justify-between px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 sm:gap-6">
@@ -14,11 +17,22 @@ function Header({ clearChat }) {
                     <FontAwesomeIcon icon={faTrashAlt} />
                     <span className="hidden sm:inline ml-2">Clear chat</span>
                 </button>
+                {/* Wrapper div for relative positioning */}
+                <div className="relative">
+                    <button 
+                        onClick={() => setShowAbout(!showAbout)} 
+                        className="btn-tactile btn-ghost text-sm sm:text-base"
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        <span className="hidden sm:inline ml-2">About us</span>
+                    </button>
 
-                <button className="btn-tactile btn-ghost text-sm sm:text-base">
-                    <FontAwesomeIcon icon={faInfoCircle} />
-                    <span className="hidden sm:inline ml-2">About us</span>
-                </button>
+                    {/* The Card Component */}
+                    <AboutCard 
+                        isOpen={showAbout} 
+                        onClose={() => setShowAbout(false)} 
+                    />
+                </div>
             </div>
 
             <div className="flex items-center gap-2 sm:gap-4">

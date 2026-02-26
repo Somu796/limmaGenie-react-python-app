@@ -27,3 +27,6 @@ dist-ssr
 .env
 *.pid
 *.log
+
+# Folders
+node_modules

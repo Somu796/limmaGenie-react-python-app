@@ -1,20 +1,3 @@
-// export default function HomePage({ handlePageChange }) {
-//     return (
-//         <main>
-//             Home Page
-//             <form action={handlePageChange}>
-//                 <label htmlFor="Text">
-//                     <input type="text"
-//                         name="userInitialText"
-//                     />
-//                     <button>changePage</button>
-//                 </label>
-//             </form>
-//         </main>
-//     )
-// }
-
-
 import MessageInput from "./MessgeInput";
 function HomePage(props) {
 
@@ -23,12 +6,6 @@ function HomePage(props) {
             <main className="mt-16 max-w-3xl mx-auto text-center">
                 <h1
                     className="text-6xl font-bold mb-6 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight font-raisin"
-                // style={{
-                //   fontFamily: "'Caveat Brush', serif",
-                //   color: "black",
-                //   // letterSpacing: "0.3rem",
-                //   // fontSize: "5rem"
-                // }}
                 >
                     limmaGenie
                 </h1>

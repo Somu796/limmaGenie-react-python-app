@@ -33,7 +33,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   // 3. Handles both pageToShow and update/add messages
-  async function handleMesages(formdata) {
+  async function handleMessages(formdata) {
 
     // 3.1. I will access home page messge here from the form data
     const userInput = formdata.get("messageInput");
@@ -99,7 +99,9 @@ function App() {
   return (
     <div className='h-dvh w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col overflow-hidden'>
       <Header clearChat={clearChat} />
-      {pageToShow ? <ChatPage messages={messages} handleMesages={handleMesages} isLoading={isLoading} /> : <HomePage handleMesages={handleMesages} />}
+      {pageToShow ?
+        <ChatPage messages={messages} handleMesages={handleMessages} isLoading={isLoading} /> :
+        <HomePage handleMesages={handleMessages} />}
 
     </div>
   )
