@@ -1,115 +1,107 @@
 import { useRef, useEffect } from "react";
 import MessageInput from "./MessgeInput";
-import 'highlight.js/styles/a11y-light.css';
+import "highlight.js/styles/a11y-light.css";
 import { Loader, TypedMarkdown, CodeBlock } from "./utils.jsx";
 
-
 function ChatPage(props) {
-    // const parts = splitCodeFromText(message.content);
-    const messagesEndRef = useRef(null);
+  // const parts = splitCodeFromText(message.content);
+  const messagesEndRef = useRef(null);
 
-    // // Scroll to bottom whenever messages change
-    // useEffect(() => {
-    //     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    // }, [props.messages, props.isLoading]);
+  // // Scroll to bottom whenever messages change
+  // useEffect(() => {
+  //     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [props.messages, props.isLoading]);
 
-    // This function uses the ref you already have
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
+  // This function uses the ref you already have
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
-    // Keep your existing useEffect for when new messages arrive
-    useEffect(() => {
-        scrollToBottom();
-    }, [props.messages, props.isLoading]);
+  // Keep your existing useEffect for when new messages arrive
+  useEffect(() => {
+    scrollToBottom();
+  }, [props.messages, props.isLoading]);
 
-    return (
-        // <main
-        //     className={`p-4 max-w-[80%] rounded-2xl`}
-        // // className={`p-4 max-w-[80%] rounded-2xl ${message.role === "user"
-        // //     ? "bg-gray-100 rounded-tr-none"
-        // //     : "bg-blue-50 rounded-tl-none"
-        // //     }`}
-        // >
-        <main className="h-dvh w-full bg-white max-w-4xl mx-auto flex flex-col justify-center overflow-hidden px-4 py-8">
-            <div className="text-center mb-8">
-                <h1 className="text-3xl font-bold mb-2">limmaGenie</h1>
-                <p className="text-gray-600">
-                    Ask me anything about{" "}
-                    <a
-                        href="https://doi.org/10.1093/nar/gkv007"
-                        className="text-blue-400 hover:text-blue-700 font-medium"
-                    >
-                        limma
-                    </a>{" "}
-                    analysis!
-                </p>
+  return (
+    // <main
+    //     className={`p-4 max-w-[80%] rounded-2xl`}
+    // // className={`p-4 max-w-[80%] rounded-2xl ${message.role === "user"
+    // //     ? "bg-gray-100 rounded-tr-none"
+    // //     : "bg-blue-50 rounded-tl-none"
+    // //     }`}
+    // >
+    <main className="h-dvh w-full bg-white max-w-4xl mx-auto flex flex-col justify-center overflow-hidden px-4 py-8">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold mb-2">limmaGenie</h1>
+        <p className="text-gray-600">
+          Ask me anything about{" "}
+          <a
+            href="https://doi.org/10.1093/nar/gkv007"
+            className="text-blue-400 hover:text-blue-700 font-medium"
+          >
+            limma
+          </a>{" "}
+          analysis!
+        </p>
+      </div>
+
+      {/* Chat Messages */}
+      <div className="space-y-6 overflow-y-auto max-h-[60vh] p-4 pb-32">
+        {props.messages.map((msg, index) => (
+          <div
+            key={msg.id || index} //index just used as fallback
+            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+          >
+            <div
+              className={`p-4 max-w-[80%] rounded-2xl ${
+                msg.role === "user"
+                  ? "bg-blue-500 text-white rounded-tr-none" // User bubble (usually blue/dark)
+                  : "bg-gray-100 text-gray-800 rounded-tl-none" // AI bubble (usually light)
+              }`}
+            >
+              <div className={"prose prose-slate max-w-none"}>
+                {msg.role === "user" ? (
+                  /* Render user messages as plain text to avoid Markdown symbol issues */
+                  <p className="whitespace-pre-wrap m-0">{msg.content}</p>
+                ) : (
+                  /* Render AI responses as Markdown */
+                  // <ReactMarkdown
+                  //     rehypePlugins={[rehypeHighlight]}
+                  //     components={{
+                  //         pre: CodeBlock // This tells Markdown to use our custom CodeBlock for all <pre> tags
+                  //     }}>
+                  //     {msg.content}
+                  // </ReactMarkdown>
+                  <TypedMarkdown
+                    content={msg.content}
+                    isLast={index === props.messages.length - 1 && msg.role === "assistant"}
+                    isLoading={props.isLoading}
+                    CodeBlockComponent={CodeBlock}
+                    onType={scrollToBottom}
+                  />
+                )}
+              </div>
             </div>
+            {/* <ChatMessage message={msg.id.content} /> */}
+          </div>
+        ))}
+        <Loader isLoading={props.isLoading} />
+        <div ref={messagesEndRef} />
+      </div>
 
-            {/* Chat Messages */}
-            <div className="space-y-6 overflow-y-auto max-h-[60vh] p-4 pb-32">
-                {
-                    props.messages.map((msg, index) => (
-                        <div
-                            key={msg.id || index} //index just used as fallback
-                            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"
-                                }`}
-                        >
-                            <div
-                                className={`p-4 max-w-[80%] rounded-2xl ${msg.role === "user"
-                                    ? "bg-blue-500 text-white rounded-tr-none" // User bubble (usually blue/dark)
-                                    : "bg-gray-100 text-gray-800 rounded-tl-none" // AI bubble (usually light)
-                                    }`}
-                            >
-                                <div className={"prose prose-slate max-w-none"
-                                }>
-                                    {msg.role === "user" ? (
-                                        /* Render user messages as plain text to avoid Markdown symbol issues */
-                                        <p className="whitespace-pre-wrap m-0">{msg.content}</p>
-                                    ) : (
-                                        /* Render AI responses as Markdown */
-                                        // <ReactMarkdown
-                                        //     rehypePlugins={[rehypeHighlight]}
-                                        //     components={{
-                                        //         pre: CodeBlock // This tells Markdown to use our custom CodeBlock for all <pre> tags
-                                        //     }}>
-                                        //     {msg.content}
-                                        // </ReactMarkdown>
-                                        <TypedMarkdown
-                                            content={msg.content}
-                                            isLast={index === props.messages.length - 1 && msg.role === "assistant"}
-                                            isLoading={props.isLoading}
-                                            CodeBlockComponent={CodeBlock}
-                                            onType={scrollToBottom}
-                                        />
-                                    )}
-                                </div>
-                            </div>
-                            {/* <ChatMessage message={msg.id.content} /> */}
+      {/* Input Area */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white shadow-lg z-10">
+        <div className="container mx-auto max-w-4xl">
+          <MessageInput handleMessages={props.handleMessages} isLoading={props.isLoading} />
+        </div>
+      </div>
+    </main>
 
-                        </div>))
-                }
-                <Loader isLoading={props.isLoading} />
-                <div ref={messagesEndRef} />
-            </div>
-
-            {/* Input Area */}
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-white shadow-lg z-10">
-                <div className="container mx-auto max-w-4xl">
-                    <MessageInput handleMesages={props.handleMesages} isLoading={props.isLoading} />
-                </div>
-            </div>
-        </main>
-
-        // </main >
-    );
+    // </main >
+  );
 }
 
-
 export default ChatPage;
-
-
-
 
 // import React, { useState, useEffect, useRef } from "react";
 // import { useLocation } from "react-router-dom";
@@ -247,7 +239,6 @@ export default ChatPage;
 // };
 
 // export default ChatInterfacePage;
-
 
 //  I think after api call I am dividing it into two parts text and code in blocks but I guess just rendering md as chat should work
 // function splitCodeFromText(text) {

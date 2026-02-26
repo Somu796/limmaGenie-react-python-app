@@ -115,7 +115,7 @@ const AboutCard = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed inset-x-4 top-5 z-100 bg-white border border-gray-200 shadow-2xl rounded-2xl p-6 sm:p-8 overflow-y-auto max-h-[85vh] animate-in fade-in slide-in-from-top-4 duration-300
+      className="fixed inset-x-4 top-3 z-100 bg-white border border-gray-200 shadow-2xl rounded-2xl p-6 sm:p-8 overflow-y-auto max-h-[85vh] animate-in fade-in slide-in-from-top-4 duration-300
                         md:absolute md:top-14 md:left-0 md:right-auto md:w-150 lg:w-175"
     >
       {/* Header Section */}
