@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
-import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
+const ReactMarkdown = lazy(() => import("react-markdown"));
 
 const CodeBlock = ({ children, ...props }) => {
   const [copied, setCopied] = useState(false);

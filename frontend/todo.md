@@ -2,7 +2,7 @@
 
 ## Features to be added
 
-1. [x] add API side effect,
+1. [x] add API async and await with the button action,
 2. [] add logo,
 3. [] login and sign up can go for now.
 4. [] left side for About Us and Delete

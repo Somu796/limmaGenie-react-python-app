@@ -1,0 +1,11 @@
+# Environment
+.env
+
+# Others
+.gitignore
+.prettierrc
+todo.md
+
+# Folders
+dist/
+node_modules/
