@@ -1,8 +1,5 @@
-# =============================================================
-# Stage 1: BUILD
-# Purpose: Install dependencies using uv (fast installer)
-# This stage is temporary
-# =============================================================
+# Stage 1: BUILD (temporary)
+# Purpose: Install dependencies using uv
 FROM python:3.12-slim AS builder
 
 # Set working directory inside the container
@@ -28,11 +25,10 @@ COPY app.py ./
 RUN uv pip install --system --no-cache -e .
 
 
-# =============================================================
 # Stage 2: PRODUCTION
 # Purpose: Clean, minimal image with only what's needed to run
 # No build tools, no uv, no cache - just Python + limmaGenie app (FastAPI + Library)
-# =============================================================
+
 FROM python:3.12-slim
 
 # Set working directory

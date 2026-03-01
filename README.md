@@ -12,8 +12,8 @@
 
 Try it here here:
 <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border:2px solid #333; border-radius:8px;">
-  <iframe src="https://limma-bot-cravd3dyaqhkegf8.eastus-01.azurewebsites.net/" 
-          frameborder="0" width="100%" height="100%" 
+  <iframe src="https://limma-bot-cravd3dyaqhkegf8.eastus-01.azurewebsites.net/"
+          frameborder="0" width="100%" height="100%"
           allowfullscreen style="position:absolute; top:0; left:0; border:2px solid #555; border-radius:8px;">
   </iframe>
 </div>
@@ -29,9 +29,10 @@ Try it here here:
 Built with **LLM-powered intelligence** and deployed as a lightweight app, it's designed to **democratize omics analysis**.
 
 ## ⚙️ How it works
+
 <div style="width: 100%; margin: 0 auto; background-color: #f9f9f9;;">
-  <img src="images/limmaGenie_Workflow.svg" 
-       alt="Workflow" 
+  <img src="images/limmaGenie_Workflow.svg"
+       alt="Workflow"
        style="width: 100%; height: auto; display: block;">
 </div>
 
@@ -44,9 +45,19 @@ Built with **LLM-powered intelligence** and deployed as a lightweight app, it's 
    > cd limmaGenie-react-python-app
    ```
 
-2. **Run the App:**
+2. **Write a .env file:**
+
+    ```.env
+    LIMMAGENIE_OPENAI_API_KEY=Your_OPENAI_API_KEY
+    MONGODB_CONNECTION_STRING=Your_Database_Connection_String
+    OPENAI_MODEL_NAME=gpt-4o-mini
+    EMBEDDING_MODEL_NAME=text-embedding-ada-002
+    ```
+
+3. **Run the App:**
+
    ```bash
-   > ./dev.sh #Should be docker compose
+   > docker compose up
    ```
 
 ## 🧠 What Tech Stack?
@@ -57,14 +68,14 @@ Built with **LLM-powered intelligence** and deployed as a lightweight app, it's 
 - **Knowledge Curation**: Unstructured + BeautifulSoup
 - **Search Integration**: DuckDuckGo + BeautifulSoup
 - **Database**: MongoDB (secure access required)
-
+- **Contenarisation**: Docker Compose
 
 ## 🔐 To Get DB Access
 
 To get access to the database for full functionality, please email:
 
-📧 **bkushagra100@gmail.com**
-📧 **sudiptakh037@gmail.com**
+📧 **<bkushagra100@gmail.com>**
+📧 **<sudiptakh037@gmail.com>**
 
 ## 📘 Citations & Learning Resources
 
@@ -74,7 +85,6 @@ Learn more about `limma` and associated tools here:
 - [Design Matrix Guide for Gene Expression](https://bioconductor.org/help/workflows/limmaWorkflows/)
 - [RNA-seq Analysis with limma, Glimma, and edgeR](https://f1000research.com/articles/5-1408)
 
-
 ## 👨‍🔬 Built By
 
 - **Sudipta Kumar Hazra** – MSc (Research) Student, UCC and Teagasc, Ireland
@@ -82,10 +92,10 @@ Learn more about `limma` and associated tools here:
 
 We're committed to building smarter and simpler tools for the omics research community.
 
-
-## 💬 Thanks for Visiting!
+## 💬 Thanks for Visiting
 
 If you find this useful, ⭐ star the repo and feel free to contribute!
 
-# Sample Questions:
-I have 3 treatments, stress or not stress, grass fed or hay, bull or cow, help me to build a limma model for the analysis of my proteomics data
+# Sample Questions
+
+- I have 3 treatments, stress or not stress, grass fed or hay, bull or cow, help me to build a limma model for the analysis of my proteomics data
