@@ -7,7 +7,7 @@ import ChatPage from "./components/ChatPage";
 import { sendMessageToOpenAI } from "./API";
 
 function App() {
-  // 1. Handle Main Page transition to Chat Page
+  // 1. Handle Main Page transition to Chat Page # Should work
   const [pageToShow, setPageToShow] = useState(false); // false is home; true is chat page
   // 2. Manages messages
   // 2.1. State variables
