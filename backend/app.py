@@ -31,6 +31,3 @@ async def home() -> dict[str, str]:
 @app.get("/response")
 async def response(user_query: str) -> LLMResponse:
     return get_response_llm(user_query)
-
-
-# Check
