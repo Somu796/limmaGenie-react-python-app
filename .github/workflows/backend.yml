@@ -4,10 +4,11 @@ name: Trigger auto deployment for limmagenie-backend
 on:
   # Automatically trigger it when detected changes in repo
   push:
-    branches: [main]
     paths:
       - "backend/**"
       - ".github/workflows/backend.yml"
+    branches:
+      - main
 
   # Allow manual trigger
   workflow_dispatch:
