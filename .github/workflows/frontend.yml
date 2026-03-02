@@ -26,7 +26,7 @@ jobs:
       - name: Install and Build
         # This is where the magic happens. Vite sees these during 'npm run build'
         env:
-          VITE_API_URL: ${{ secrets.VITE_BACKEND_API_URL }}
+          VITE_API_URL: ${{ secrets.VITE_LIMMAGENIE_API_URL }}
         run: |
           cd frontend
           npm install
