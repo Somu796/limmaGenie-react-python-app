@@ -67,7 +67,9 @@ function App() {
     try {
       const LIMMAGENIE_API_URL = import.meta.env.VITE_LIMMAGENIE_API_URL;
       // Wrapped userInput in encodeURIComponent() to safely handle symbols like '?', '&', or '+'
-      const response_json = await fetch(`${LIMMAGENIE_API_URL}${encodeURIComponent(userInput)}`);
+      const response_json = await fetch(
+        `${LIMMAGENIE_API_URL}/response?user_query=${encodeURIComponent(userInput)}`
+      );
 
       // Sometimes API might not work: Added manual check for response.ok to catch 404 or 500 errors before parsing JSON
       console.log(response_json);
