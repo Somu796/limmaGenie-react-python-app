@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <em>🚀 Try <a href="https://limmagenie-frontend-bpgscwcadxafbefh.eastus-01.azurewebsites.net/"> limmaGenie</a></em>
+  <em>🚀 Try at <a href="https://limmagenie-frontend-bpgscwcadxafbefh.eastus-01.azurewebsites.net/"> limmaGenie</a></em>
 </p>
 
 # 🧞‍♀️ live demo
