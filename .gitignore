@@ -32,3 +32,6 @@ secrets.json
 # Folders
 node_modules/
 deployment_details/
+
+# Files
+azure_deployment.sh

@@ -68,7 +68,7 @@ Built with **LLM-powered intelligence** and deployed as a lightweight app, it's 
 - **Knowledge Curation**: Unstructured + BeautifulSoup
 - **Search Integration**: DuckDuckGo + BeautifulSoup
 - **Database**: MongoDB (secure access required)
-- **Contenarisation**: Docker Compose
+- **Contenarisation**: Docker
 
 ## 🔐 To Get DB Access
 
