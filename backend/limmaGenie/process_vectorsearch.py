@@ -22,11 +22,15 @@ def process_vector_search_results(
     """
     Perform vector search with improved relevance filtering.
 
-    :param query: Search query string
-    :param embeddings_func: Function to generate embeddings
-    :param config: Configuration dictionary
-    :param seed: Random seed for reproducibility
-    :return: Dictionary with processed search results
+    Args:
+        query: Search query string
+        embeddings_func: Function to generate embeddings
+        config: Configuration dictionary
+        seed: Random seed for reproducibility
+
+    Return:
+        Dictionary with processed search results
+
     """
     # Set random seed for reproducibility
     # np.random.seed(seed)

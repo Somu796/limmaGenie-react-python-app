@@ -13,8 +13,10 @@ class AtlasClient:
         """
         Initialize MongoDB client with error handling.
 
-        :param atlas_uri: Connection string for MongoDB
-        :param dbname: Name of the database
+        Args:
+            atlas_uri: Connection string for MongoDB
+            dbname: Name of the database
+
         """
         try:
             self.mongodb_client: MongoClient = MongoClient(atlas_uri)
@@ -30,7 +32,9 @@ class AtlasClient:
         """
         Quick method to test Atlas instance connection.
 
-        :raises: ConnectionError if ping fails
+        Raises:
+            ConnectionError if ping fails
+
         """
         try:
             self.mongodb_client.admin.command("ping")
@@ -44,8 +48,12 @@ class AtlasClient:
         """
         Retrieve a specific collection.
 
-        :param collection_name: Name of the collection
-        :return: MongoDB collection object
+        Args:
+            collection_name: Name of the collection
+
+        Returns:
+            MongoDB collection object
+
         """
         return self.database[collection_name]
 
@@ -58,10 +66,14 @@ class AtlasClient:
         """
         Find documents in a collection.
 
-        :param collection_name: Name of the collection
-        :param query_filter: Query filter
-        :param limit: Maximum number of documents to return
-        :return: List of documents
+        Args:
+            collection_name: Name of the collection
+            query_filter: Query filter
+            limit: Maximum number of documents to return
+
+        Returns:
+            List of documents
+
         """
         query_filter = query_filter or {}
         collection = self.database[collection_name]
@@ -78,12 +90,16 @@ class AtlasClient:
         """
         Perform vector search on a collection.
 
-        :param collection_name: Name of the collection
-        :param index_name: Name of the vector search index
-        :param attr_name: Attribute to search on
-        :param embedding_vector: Query embedding vector
-        :param limit: Maximum number of results
-        :return: List of search results
+        Args:
+            collection_name: Name of the collection
+            index_name: Name of the vector search index
+            attr_name: Attribute to search on
+            embedding_vector: Query embedding vector
+            limit: Maximum number of results
+
+        Returns:
+            List of search results
+
         """
         collection = self.database[collection_name]
         try:

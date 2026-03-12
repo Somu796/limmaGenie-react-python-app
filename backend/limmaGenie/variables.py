@@ -42,3 +42,6 @@ greetings = [
     "Good day! I'm *limmaGenie*. How may I assist you today?",
     "Hi there! This is *limmaGenie* speaking. How can I help?",
 ]
+
+no_answer_found_message = "*To Note*: No matching context found. Please post at https://support.bioconductor.org/."
+not_limma_related_question_message = "Your question doesn't seem to be related to limma. Please ask me about limma analysis."
